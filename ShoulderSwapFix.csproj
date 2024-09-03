@@ -32,6 +32,9 @@
     <Reference Private="False"
                Include="SPT.Reflection"
                HintPath="$(EFTSptPluginDir)/spt-reflection.dll" />
+    <Reference Private="False"
+               Include="BepInEx.ConfigurationManager"
+               HintPath="$(EFTSptPluginDir)/ConfigurationManager.dll" />
   </ItemGroup>
 
 </Project>
