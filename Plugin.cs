@@ -8,7 +8,7 @@ using SPT.Reflection.Patching;
 
 namespace ShoulderSwapFix
 {
-    [BepInPlugin("com.sgtlaggy.shoulderswapfix", "ShoulderSwapFix", "1.0.0")]
+    [BepInPlugin("com.sgtlaggy.shoulderswapfix", "ShoulderSwapFix", "1.0.1")]
     public class Plugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> Enabled { get; set; }
@@ -51,7 +51,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(LeftStanceController).GetMethod("DisableLeftStanceAnimFromHandsAction");
+            return typeof(LeftStanceController).GetMethod(nameof(LeftStanceController.DisableLeftStanceAnimFromHandsAction));
         }
 
         [PatchPrefix]
@@ -65,7 +65,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(LeftStanceController).GetMethod("DisableLeftStanceAnimFromOpenInventory");
+            return typeof(LeftStanceController).GetMethod(nameof(LeftStanceController.DisableLeftStanceAnimFromOpenInventory));
         }
 
         [PatchPrefix]
@@ -79,7 +79,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(PortableRangeFinderController.Class1079).GetMethod("SetLeftStanceAnimOnStartOperation");
+            return typeof(PortableRangeFinderController.Class1079).GetMethod(nameof(PortableRangeFinderController.Class1079.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -94,7 +94,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(RadioTransmitterController.Class1080).GetMethod("SetLeftStanceAnimOnStartOperation");
+            return typeof(RadioTransmitterController.Class1080).GetMethod(nameof(RadioTransmitterController.Class1080.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -109,7 +109,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(Player.KnifeController.Class1062).GetMethod("SetLeftStanceAnimOnStartOperation");
+            return typeof(Player.KnifeController.Class1062).GetMethod(nameof(Player.KnifeController.Class1062.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
