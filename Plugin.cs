@@ -4,11 +4,12 @@ using System.Reflection;
 using EFT;
 using BepInEx;
 using BepInEx.Configuration;
+using HarmonyLib;
 using SPT.Reflection.Patching;
 
 namespace ShoulderSwapFix
 {
-    [BepInPlugin("com.sgtlaggy.shoulderswapfix", "ShoulderSwapFix", "1.0.1")]
+    [BepInPlugin("com.sgtlaggy.shoulderswapfix", "ShoulderSwapFix", "1.1.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> Enabled { get; set; }
@@ -35,6 +36,9 @@ namespace ShoulderSwapFix
                 new KnifePatch().Enable();
                 new RangefinderPatch().Enable();
                 new RadioTransmitterPatch().Enable();
+                new GrenadePatch().Enable();
+                new MedsPatch().Enable();
+                new UsableItemPatch().Enable();
             }
             else
             {
@@ -43,7 +47,15 @@ namespace ShoulderSwapFix
                 new KnifePatch().Disable();
                 new RangefinderPatch().Disable();
                 new RadioTransmitterPatch().Disable();
+                new GrenadePatch().Disable();
+                new MedsPatch().Disable();
+                new UsableItemPatch().Disable();
             }
+        }
+
+        public static void DisableLeftStance(Player player)
+        {
+            player.MovementContext.LeftStanceController.SetLeftStanceForce(false);
         }
     }
 
@@ -85,7 +97,7 @@ namespace ShoulderSwapFix
         [PatchPrefix]
         private static bool Prefix(Player ___player_0)
         {
-            ___player_0.MovementContext.LeftStanceController.SetLeftStanceForce(false);
+            Plugin.DisableLeftStance(___player_0);
             return false;
         }
     }
@@ -100,7 +112,7 @@ namespace ShoulderSwapFix
         [PatchPrefix]
         private static bool Prefix(Player ___player_0)
         {
-            ___player_0.MovementContext.LeftStanceController.SetLeftStanceForce(false);
+            Plugin.DisableLeftStance(___player_0);
             return false;
         }
     }
@@ -115,7 +127,60 @@ namespace ShoulderSwapFix
         [PatchPrefix]
         private static bool Prefix(Player ___player_0)
         {
-            ___player_0.MovementContext.LeftStanceController.SetLeftStanceForce(false);
+            Plugin.DisableLeftStance(___player_0);
+            return false;
+        }
+    }
+
+    public class GrenadePatch : ModulePatch
+    {
+        private static FieldInfo itemHandsControllerPlayer;
+
+        protected override MethodBase GetTargetMethod()
+        {
+            itemHandsControllerPlayer = AccessTools.Field(typeof(Player.ItemHandsController), "_player");
+            return typeof(Player.GrenadeController.Class1053).GetMethod(nameof(Player.GrenadeController.Class1053.SetLeftStanceAnimOnStartOperation));
+        }
+
+        [PatchPrefix]
+        private static bool Prefix(Player.ItemHandsController ___gparam_0)
+        {
+            Player player = (Player)itemHandsControllerPlayer.GetValue(___gparam_0);
+            Plugin.DisableLeftStance(player);
+            return false;
+        }
+    }
+
+    public class MedsPatch : ModulePatch
+    {
+        private static FieldInfo medsControllerPlayer;
+
+        protected override MethodBase GetTargetMethod()
+        {
+            medsControllerPlayer = AccessTools.Field(typeof(Player.MedsController), "_player");
+            return typeof(Player.MedsController.Class1064).GetMethod(nameof(Player.MedsController.Class1064.SetLeftStanceAnimOnStartOperation));
+        }
+
+        [PatchPrefix]
+        private static bool Prefix(Player.MedsController ___medsController_0)
+        {
+            Player player = (Player)medsControllerPlayer.GetValue(___medsController_0);
+            Plugin.DisableLeftStance(player);
+            return false;
+        }
+    }
+
+    public class UsableItemPatch : ModulePatch
+    {
+        protected override MethodBase GetTargetMethod()
+        {
+            return typeof(Player.UsableItemController.Class1078).GetMethod(nameof(Player.UsableItemController.Class1078.SetLeftStanceAnimOnStartOperation));
+        }
+
+        [PatchPrefix]
+        private static bool Prefix(Player ___player_0)
+        {
+            Plugin.DisableLeftStance(___player_0);
             return false;
         }
     }

@@ -28,6 +28,9 @@
     <Reference Private="False"
                Include="BepInEx"
                HintPath="$(EFTBepInExCoreDir)/BepInEx.dll" />
+    <Reference Private="False"
+               Include="0Harmony"
+               HintPath="$(EFTBepInExCoreDir)/0Harmony.dll" />
 
     <Reference Private="False"
                Include="SPT.Reflection"
