@@ -9,7 +9,7 @@ using SPT.Reflection.Patching;
 
 namespace ShoulderSwapFix
 {
-    [BepInPlugin("com.sgtlaggy.shoulderswapfix", "ShoulderSwapFix", "1.1.0")]
+    [BepInPlugin("com.sgtlaggy.shoulderswapfix", "ShoulderSwapFix", "1.2.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> Enabled { get; set; }
