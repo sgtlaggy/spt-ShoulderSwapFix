@@ -91,7 +91,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(PortableRangeFinderController.Class1079).GetMethod(nameof(PortableRangeFinderController.Class1079.SetLeftStanceAnimOnStartOperation));
+            return typeof(PortableRangeFinderController.Class1173).GetMethod(nameof(PortableRangeFinderController.Class1173.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -106,7 +106,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(RadioTransmitterController.Class1080).GetMethod(nameof(RadioTransmitterController.Class1080.SetLeftStanceAnimOnStartOperation));
+            return typeof(RadioTransmitterController.Class1174).GetMethod(nameof(RadioTransmitterController.Class1174.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -121,7 +121,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(Player.KnifeController.Class1062).GetMethod(nameof(Player.KnifeController.Class1062.SetLeftStanceAnimOnStartOperation));
+            return typeof(Player.KnifeController.Class1156).GetMethod(nameof(Player.KnifeController.Class1156.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -139,7 +139,7 @@ namespace ShoulderSwapFix
         protected override MethodBase GetTargetMethod()
         {
             itemHandsControllerPlayer = AccessTools.Field(typeof(Player.ItemHandsController), "_player");
-            return typeof(Player.GrenadeController.Class1053).GetMethod(nameof(Player.GrenadeController.Class1053.SetLeftStanceAnimOnStartOperation));
+            return typeof(Player.GrenadeHandsController.Class1147).GetMethod(nameof(Player.GrenadeHandsController.Class1147.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -158,7 +158,7 @@ namespace ShoulderSwapFix
         protected override MethodBase GetTargetMethod()
         {
             medsControllerPlayer = AccessTools.Field(typeof(Player.MedsController), "_player");
-            return typeof(Player.MedsController.Class1064).GetMethod(nameof(Player.MedsController.Class1064.SetLeftStanceAnimOnStartOperation));
+            return typeof(Player.MedsController.Class1158).GetMethod(nameof(Player.MedsController.Class1158.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
@@ -174,7 +174,7 @@ namespace ShoulderSwapFix
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(Player.UsableItemController.Class1078).GetMethod(nameof(Player.UsableItemController.Class1078.SetLeftStanceAnimOnStartOperation));
+            return typeof(Player.UsableItemController.Class1172).GetMethod(nameof(Player.UsableItemController.Class1172.SetLeftStanceAnimOnStartOperation));
         }
 
         [PatchPrefix]
